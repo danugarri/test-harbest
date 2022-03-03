@@ -3,9 +3,13 @@ import { useState } from 'react';
 import { getProducts } from '../service/productsList.service';
 
 export const ProductsList = () => {
-    const [products,setProducts] = useState([]);
+    interface Iproducts {
+        name: string;
+
+    }
+    const [products,setProducts] = useState([{name:''}]);
     getProducts().then(response =>{ 
-       const resp= response.data;
+       const resp:Iproducts[]= response.data;
         setProducts(resp);
     })
 
@@ -13,14 +17,16 @@ export const ProductsList = () => {
     return (
         <>
             {
-            products.map(product => )
-            <table>
-                <tbody>
-                    <tr>
-
-                    </tr>
-                </tbody>
-            </table>
+            products.map(product => (
+                 <table key= 'products'>
+                    <tbody>
+                        <tr>
+                            {product.name}
+                        </tr>
+                    </tbody>
+                </table>
+            ) )
+           
             }
         </>
     )
