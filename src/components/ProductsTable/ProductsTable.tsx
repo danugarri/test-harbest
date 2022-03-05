@@ -6,8 +6,9 @@ import { getProducts } from '../service/productsList.service';
 export const ProductsTable = (props:any) => {
     const {products,tableHeaders} = props;
      const arrayProductSelected:Iproducts[]= [];
-     const [ProductSelected, setProductSelected] = useState({})
+     const [productSelected, setProductSelected] = useState({})
     
+     
     return(
         <table>
             <thead>
@@ -23,7 +24,6 @@ export const ProductsTable = (props:any) => {
             </thead>
             <tbody> 
             {
-               
                 products.map((product:Iproducts,index:number) => {
                     const row= Object.values(product);
                     
@@ -40,8 +40,6 @@ export const ProductsTable = (props:any) => {
                             setProductSelected(product)
                         })
                     }
-                     
-
                     return (
                     <tr key= {index} datatype='row'>
                         {

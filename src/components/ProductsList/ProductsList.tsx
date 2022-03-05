@@ -4,15 +4,15 @@ import { Iproducts } from '../../shared/model/productsList.model';
 import { ProductsTable } from '../ProductsTable/ProductsTable';
 import { getProducts } from '../service/productsList.service';
 
+export const initialState= {
+     name:'daniel',
+     description: 'front',
+     active: true,
+     price: 100000,
+     SKU:'D000000'
+ }
 export const ProductsList = () => {
     
-    const initialState= {
-        name:'daniel',
-        description: 'front',
-        active: true,
-        price: 100000,
-        SKU:'D000000'
-    }
     const tableHeaders= Object.keys(initialState);
     const [products,setProducts] = useState([initialState]);
    
