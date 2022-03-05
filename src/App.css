@@ -10,3 +10,8 @@ td{
 thead{
   background-color: rgb(161, 252, 158);
 }
+.update-icon{
+  cursor:pointer;
+  top: 7px;
+  position:relative
+}

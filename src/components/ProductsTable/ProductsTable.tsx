@@ -1,5 +1,6 @@
 import React from 'react';
 import { Iproducts } from '../../shared/model/productsList.model';
+import SyncTwoToneIcon from '@mui/icons-material/SyncTwoTone';
 
 export const ProductsTable = (props:any) => {
     const {products,tableHeaders} = props;
@@ -26,7 +27,7 @@ export const ProductsTable = (props:any) => {
                     <tr key= {index}>
                         {
                             row.map((cell,rowIndex) => (
-                                cell === true || cell === false ? <td key= {rowIndex}>{`${cell}`} </td> :
+                                cell === true || cell === false ? <td key= {rowIndex}>{`${cell}`}   <SyncTwoToneIcon color= 'secondary' className= 'update-icon'/> </td> :
                                 <td key= {rowIndex}>{cell} </td>
                             ))
                         }
