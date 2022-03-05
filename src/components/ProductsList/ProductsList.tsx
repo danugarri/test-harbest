@@ -24,6 +24,6 @@ export const ProductsList = () => {
     },[])
 
     return (
-        <ProductsTable tableHeaders= {tableHeaders} products= {products}/>
+        <ProductsTable tableHeaders= {tableHeaders} products= {products} setProducts={setProducts}/>
     )
 }

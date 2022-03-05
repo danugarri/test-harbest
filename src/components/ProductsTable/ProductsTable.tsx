@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Iproducts } from '../../shared/model/productsList.model';
 import SyncTwoToneIcon from '@mui/icons-material/SyncTwoTone';
 import { getProducts } from '../service/productsList.service';
-import { updateProducts } from '../service/updateProduct';
+// import { updateProducts } from '../service/updateProduct';
 import { initialState } from '../ProductsList/ProductsList';
 import { useDispatch } from 'react-redux';
 import { selectProductAction } from '../../actions/selectProductAction';
@@ -10,17 +10,24 @@ import { getAllAction } from '../../actions/getAllAction';
 
 export const ProductsTable = (props:any) => {
     const {products,tableHeaders} = props;
-     const arrayProductSelected:Iproducts[]= [];
-     const [productSelected, setProductSelected] = useState(initialState)
-     const dispatch= useDispatch();
-     let isUpdated = false;
+    const arrayProductSelected:Iproducts[]= [];
+    const [productSelected, setProductSelected] = useState(initialState)
+    const dispatch= useDispatch();
+    // const storeProducts= useSelector((state:any )=> state.allProducts.all)
+    // const [status, setStatus] = useState(false);
+    //  const changeStatus = () => {
+    //    const preVStatus:boolean =  productSelected.active;
+    //    setStatus(!preVStatus);
+    //    productSelected.active = status;
+    // }
     useEffect(() => {
-          updateProducts(productSelected)
+    
           dispatch(selectProductAction(productSelected))
-    },[isUpdated,productSelected,dispatch])
+    },[productSelected,dispatch])
      useEffect(() => {
          dispatch(getAllAction(products))
-     },[products,dispatch])
+     },[products,dispatch]);
+
     return(
         <table>
             <thead>
