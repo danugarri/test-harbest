@@ -6,6 +6,7 @@ import { updateProducts } from '../service/updateProduct';
 import { initialState } from '../ProductsList/ProductsList';
 import { useDispatch } from 'react-redux';
 import { selectProductAction } from '../../actions/selectProductAction';
+import { getAllAction } from '../../actions/getAllAction';
 
 export const ProductsTable = (props:any) => {
     const {products,tableHeaders} = props;
@@ -17,7 +18,9 @@ export const ProductsTable = (props:any) => {
           updateProducts(productSelected)
           dispatch(selectProductAction(productSelected))
     },[isUpdated,productSelected,dispatch])
-     
+     useEffect(() => {
+         dispatch(getAllAction(products))
+     },[products,dispatch])
     return(
         <table>
             <thead>

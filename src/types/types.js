@@ -1,3 +1,4 @@
 export const types = {
-    selection: '[PRODUCTTABLE] product'
+    selection: '[TABLE] product',
+    allProducts:  '[TABLE] all'
 }
