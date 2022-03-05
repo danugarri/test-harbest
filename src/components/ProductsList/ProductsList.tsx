@@ -1,15 +1,11 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
+import { Iproducts } from '../../shared/model/productsList.model';
+import { ProductsTable } from '../ProductsTable/ProductsTable';
 import { getProducts } from '../service/productsList.service';
 
 export const ProductsList = () => {
-    interface Iproducts {
-        name: string;
-        description: string;
-        active: boolean;
-        price: number;
-        SKU: string;
-    }
+    
     const initialState= {
         name:'daniel',
         description: 'front',
@@ -28,36 +24,6 @@ export const ProductsList = () => {
     },[])
 
     return (
-        <table>
-            <thead>
-                <tr>
-                {
-                    tableHeaders.map( (head,index) => (
-                    <th key={index}>
-                        {head}
-                    </th>
-                    ))
-                }
-                </tr>
-            </thead>
-            <tbody> 
-            {
-                products.map((product,index) => {
-                    const row= Object.values(product);
-
-                    return (
-                    <tr key= {index}>
-                        {
-                            row.map((cell,rowIndex) => (
-                                cell === true || cell === false ? <td key= {rowIndex}>{`${cell}`} </td> :
-                                <td key= {rowIndex}>{cell} </td>
-                            ))
-                        }
-                        </tr>
-                )
-                })
-            }
-            </tbody>
-        </table>
+        <ProductsTable tableHeaders= {tableHeaders} products= {products}/>
     )
 }
