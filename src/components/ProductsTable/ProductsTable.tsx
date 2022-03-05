@@ -1,13 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Iproducts } from '../../shared/model/productsList.model';
 import SyncTwoToneIcon from '@mui/icons-material/SyncTwoTone';
 import { getProducts } from '../service/productsList.service';
+import { updateProducts } from '../service/updateProduct';
+import { initialState } from '../ProductsList/ProductsList';
+import { useDispatch } from 'react-redux';
+import { selectProductAction } from '../../actions/selectProductAction';
 
 export const ProductsTable = (props:any) => {
     const {products,tableHeaders} = props;
      const arrayProductSelected:Iproducts[]= [];
-     const [productSelected, setProductSelected] = useState({})
-    
+     const [productSelected, setProductSelected] = useState(initialState)
+     let isUpdated = false;
+    useEffect(() => {
+          updateProducts(productSelected)
+    },[isUpdated,productSelected])
+    const dispatch= useDispatch();
+    dispatch(selectProductAction(productSelected))
      
     return(
         <table>
