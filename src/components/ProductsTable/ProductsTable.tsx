@@ -11,12 +11,12 @@ export const ProductsTable = (props:any) => {
     const {products,tableHeaders} = props;
      const arrayProductSelected:Iproducts[]= [];
      const [productSelected, setProductSelected] = useState(initialState)
+     const dispatch= useDispatch();
      let isUpdated = false;
     useEffect(() => {
           updateProducts(productSelected)
-    },[isUpdated,productSelected])
-    const dispatch= useDispatch();
-    dispatch(selectProductAction(productSelected))
+          dispatch(selectProductAction(productSelected))
+    },[isUpdated,productSelected,dispatch])
      
     return(
         <table>
