@@ -46,11 +46,11 @@ export const ProductsList = () => {
                     const row= Object.values(product);
 
                     return (
-                    <tr>
+                    <tr key= {index}>
                         {
-                            row.map(cell => (
-                                cell === true || cell === false ? <td key= {index}>{`${cell}`} </td> :
-                                <td key= {index}>{cell} </td>
+                            row.map((cell,rowIndex) => (
+                                cell === true || cell === false ? <td key= {rowIndex}>{`${cell}`} </td> :
+                                <td key= {rowIndex}>{cell} </td>
                             ))
                         }
                         </tr>
