@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { getProducts } from '../service/productsList.service';
 
@@ -19,11 +19,13 @@ export const ProductsList = () => {
     }
     const tableHeaders= Object.keys(initialState);
     const [products,setProducts] = useState([initialState]);
-    getProducts().then(response =>{ 
-       const resp:Iproducts[]= response.data;
-        setProducts(resp);
-    })
-
+   
+    useEffect(() => {
+        getProducts().then(response =>{ 
+        const resp:Iproducts[]= response.data;
+            setProducts(resp);
+        })
+    },[])
 
     return (
         <table>
@@ -38,16 +40,23 @@ export const ProductsList = () => {
                 }
                 </tr>
             </thead>
-            <tbody>
-                 <tr>
+            <tbody> 
             {
-            products.map((product,index) => {
-                
-               return Object.values(product).map(cell => <td key= {index}>{cell} </td>)
-               
-            })
+                products.map((product,index) => {
+                    const row= Object.values(product);
+
+                    return (
+                    <tr>
+                        {
+                            row.map(cell => (
+                                cell === true || cell === false ? <td key= {index}>{`${cell}`} </td> :
+                                <td key= {index}>{cell} </td>
+                            ))
+                        }
+                        </tr>
+                )
+                })
             }
-            </tr>
             </tbody>
         </table>
     )
